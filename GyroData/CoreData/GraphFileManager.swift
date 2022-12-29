@@ -42,9 +42,9 @@ final class GraphFileManager {
             }
             let fileURL = documentDirectoryUrl.appendingPathComponent("\(fileName).json")
             let jsonData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
-            let decodedBigSur = try jsonDecoder.decode([GraphModel].self, from: jsonData)
+            let decodedData = try jsonDecoder.decode([GraphModel].self, from: jsonData)
             
-            return decodedBigSur
+            return decodedData
         }
         catch {
             print(error)
