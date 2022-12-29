@@ -16,6 +16,7 @@
 		8F4508A929598C8C00538AE4 /* GyroData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F4508A729598C8B00538AE4 /* GyroData.xcdatamodeld */; };
 		8F4508AD29598E6400538AE4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4508AC29598E6400538AE4 /* CoreDataManager.swift */; };
 		8F4508B1295ACFB200538AE4 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4508B0295ACFB200538AE4 /* GraphView.swift */; };
+		8F646504295C818600696C0B /* GraphFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F646503295C818600696C0B /* GraphFileManager.swift */; };
 		8F97A77E295C1CD900138E61 /* AnalyzeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F97A77D295C1CD900138E61 /* AnalyzeListViewController.swift */; };
 		8F97A782295C20FA00138E61 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F97A781295C20FA00138E61 /* AnalysisTableViewCell.swift */; };
 		9B3C8CD9295AB2CF0026AEA5 /* AccelerateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C8CD8295AB2CF0026AEA5 /* AccelerateManager.swift */; };
@@ -39,6 +40,7 @@
 		8F4508A829598C8B00538AE4 /* GyroData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GyroData.xcdatamodel; sourceTree = "<group>"; };
 		8F4508AC29598E6400538AE4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8F4508B0295ACFB200538AE4 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		8F646503295C818600696C0B /* GraphFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphFileManager.swift; sourceTree = "<group>"; };
 		8F97A77D295C1CD900138E61 /* AnalyzeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeListViewController.swift; sourceTree = "<group>"; };
 		8F97A781295C20FA00138E61 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
 		9B3C8CD8295AB2CF0026AEA5 /* AccelerateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerateManager.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				8F4508AC29598E6400538AE4 /* CoreDataManager.swift */,
+				8F646503295C818600696C0B /* GraphFileManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F646504295C818600696C0B /* GraphFileManager.swift in Sources */,
 				4200A362295C55FA0025E91D /* GraphRecordView.swift in Sources */,
 				9B650960295C15BC00277B34 /* AnalyzeView.swift in Sources */,
 				8F4508A929598C8C00538AE4 /* GyroData.xcdatamodeld in Sources */,

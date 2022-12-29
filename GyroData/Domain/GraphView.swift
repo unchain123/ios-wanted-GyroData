@@ -8,21 +8,22 @@
 import Charts
 import SwiftUI
 
-let dummyData: [Analysis] = [
-    .init(analysisType: .accelerate, x: 1, y: 2, z: 3, measurementTime: 10.0, savedAt: Date()),
-    .init(analysisType: .accelerate, x: 2, y: 3, z: 3, measurementTime: 20.0, savedAt: Date()),
-    .init(analysisType: .accelerate, x: 3, y: 4, z: 3, measurementTime: 30.0, savedAt: Date()),
-    .init(analysisType: .accelerate, x: 4, y: 5, z: 3, measurementTime: 40.0, savedAt: Date()),
-    .init(analysisType: .accelerate, x: 5, y: 6, z: 3, measurementTime: 50.0, savedAt: Date()),
-    .init(analysisType: .accelerate, x: 6, y: 7, z: 3, measurementTime: 60.0, savedAt: Date())
+var dummyData: [GraphModel] = [
+    .init(x: 1, y: 2, z: 3, measurementTime: 10),
+    .init(x: 2, y: 3, z: 4, measurementTime: 20),
+    .init(x: 3, y: 4, z: 5, measurementTime: 30),
+    .init(x: 4, y: 5, z: 6, measurementTime: 40),
+    .init(x: 5, y: 6, z: 7, measurementTime: 50)
 ]
+
+let dummyData2: [GyroData] = []
 
 struct GraphView: View {
     var body: some View {
         ZStack(alignment: .top) {
             GroupBox {
                 FigureView()
-                Chart() {
+                Chart {
                     ForEach(dummyData, id: \.measurementTime) { data in
                         LineMark(
                             x: .value("Time", data.measurementTime),
@@ -58,7 +59,7 @@ struct GraphView: View {
             .backgroundStyle(.white)
         }
     }
-    
+
     struct FigureView: View {
         var body: some View {
             HStack {

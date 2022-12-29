@@ -39,6 +39,7 @@ class AnalyzeListViewController: UIViewController {
         self.navigationItem.titleView = titleLabel
         self.navigationItem.rightBarButtonItem = analyzeButton
         setTableView()
+        CoreDataManager.shared.read()
     }
 
     func setTableView() {
@@ -49,12 +50,12 @@ class AnalyzeListViewController: UIViewController {
 
 extension AnalyzeListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dummyData.count
+        dummyData2.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnalysisTableViewCell.identifier, for: indexPath) as? AnalysisTableViewCell else { return AnalysisTableViewCell() }
-        cell.configureCell(at: indexPath, data: dummyData)
+        cell.configureCell(at: indexPath, cellData: dummyData2)
         return cell
     }
 
