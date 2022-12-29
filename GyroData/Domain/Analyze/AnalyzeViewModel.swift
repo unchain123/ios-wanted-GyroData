@@ -46,7 +46,12 @@ final class AnalyzeViewModel: AnalyzeViewModelInterface, AnalyzeViewModelOutputI
     private let analysisManager: AnalysisManager
     private var timer: Timer?
     private var analyzeMode: Int = 0
-    private var cellModel: [CellModel] = []
+    private var cellModel: CellModel = .init(
+        id: UUID(),
+        analysisType: AnalysisType.accelerate.rawValue,
+        savedAt: Date(),
+        measurementTime: 0.0
+    )
     private var isLoading = false
     
     init(
@@ -105,20 +110,20 @@ extension AnalyzeViewModel: AnalyzeViewModelInputInterface {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             guard let self = self else { return }
             if self.analyzeMode == 0 {
-                self.cellModel = [.init(
+                self.cellModel = .init(
                     id: UUID(),
                     analysisType: AnalysisType.accelerate.rawValue,
                     savedAt: Date.now,
                     measurementTime: self.analysis.last?.measurementTime ?? 0.0
-                )]
+                )
                 print(self.cellModel)
             } else if self.analyzeMode == 1 {
-                self.cellModel = [.init(
+                self.cellModel = .init(
                     id: UUID(),
                     analysisType: AnalysisType.gyroscope.rawValue,
                     savedAt: Date.now,
                     measurementTime: self.analysis.last?.measurementTime ?? 0.0
-                )]
+                )
                 print(self.cellModel)
             }
             self.isLoadingPublisher.send(false)

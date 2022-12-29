@@ -91,7 +91,6 @@ final class AnalyzeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.input.onViewWillAppear()
-//        viewModel.bind()
         bindEvents()
     }
     
@@ -100,7 +99,6 @@ final class AnalyzeViewController: UIViewController {
         self.viewModel.input.onViewDidLoad()
         setup()
         setupUI()
-//        viewModel.bind()
     }
     
     private func setup() {
