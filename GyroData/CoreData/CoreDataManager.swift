@@ -51,7 +51,7 @@ final class CoreDataManager {
         return fetchedAnalysisValue
     }
 
-    func pageRead() -> ([GyroData]?, Double) {
+    func pageRead() -> (model: [GyroData]?, page: Double) {
         let request = NSFetchRequest<GyroData>(entityName: "GyroData")
         let page = ceil(Double(fetchedAnalysisValue.count / 10))
         request.fetchLimit = 10

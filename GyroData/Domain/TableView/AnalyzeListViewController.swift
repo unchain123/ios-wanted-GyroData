@@ -8,10 +8,10 @@
 import UIKit
 import Combine
 
-final class AnalyzeListViewController: UIViewController {
+final class AnalyzeListViewController: UIViewController, UITableViewDataSourcePrefetching {
     private let listViewModel = AnalyzeListViewModel()
     private var cancelable = Set<AnyCancellable>()
-
+    
     private let analysisTableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,10 +98,13 @@ extension AnalyzeListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.listViewModel.input.cellDidTap(indexPath: indexPath)
     }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y == 0 {
-            self.listViewModel.input.scrollDidBottom()
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let lastItem = item.count - 1
+        for indexPath in indexPaths {
+            if lastItem == indexPath.item {
+                self.listViewModel.input.scrollDidBottom()
+            }
         }
     }
     

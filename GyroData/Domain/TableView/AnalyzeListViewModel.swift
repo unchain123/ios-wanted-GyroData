@@ -38,13 +38,15 @@ final class AnalyzeListViewModel: AnalyzeListViewModelInterface, AnalyzeListView
 
     // MARK: AnalyzeViewModelOutputInterface
     var analysis: [GyroData] = []
+    var currentPage = 1.0
     private var graph: [GraphModel] = []
     
     private func fetchCoreData() {
-        guard let fetchedData = CoreDataManager.shared.read() else {
-            return
+        let fetchedData = CoreDataManager.shared.pageRead()
+        guard let model = fetchedData.model else { return }
+        if currentPage != fetchedData.page {
+            analysis = model
         }
-        analysis = fetchedData
     }
 }
 
