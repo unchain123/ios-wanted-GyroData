@@ -15,6 +15,7 @@ protocol AnalyzeListViewModelInputInterface {
     func playButtonDidTap(indexPath: IndexPath)
     func deleteButtonDidTap(indexPath: IndexPath)
     func cellDidTap(indexPath: IndexPath)
+    func scrollDidBottom()
 }
 
 protocol AnalyzeListViewModelOutputInterface {
@@ -53,6 +54,10 @@ extension AnalyzeListViewModel: AnalyzeListViewModelInputInterface {
     }
     
     func onViewWillAppear() {
+        fetchCoreData()
+    }
+
+    func scrollDidBottom() {
         fetchCoreData()
     }
 
