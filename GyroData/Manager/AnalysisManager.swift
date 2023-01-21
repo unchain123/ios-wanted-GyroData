@@ -11,8 +11,8 @@ import CoreMotion
 typealias AnalysisData = (x: Double, y: Double, z: Double)
 
 enum AnalysisType: String, Codable {
-    case accelerate = "accelerate"
-    case gyroscope = "gyroscope"
+    case accelerate = "Accelerate"
+    case gyroscope = "Gyroscope"
 }
 
 protocol AnalysisManagerType {

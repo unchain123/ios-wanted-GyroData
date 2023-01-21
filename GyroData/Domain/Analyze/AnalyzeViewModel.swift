@@ -17,7 +17,6 @@ protocol AnalyzeViewModelInputInterface {
 }
 
 protocol AnalyzeViewModelOutputInterface {
-    var analysisPublisher: PassthroughSubject<[GraphModel], Never> { get }
     var isLoadingPublisher: PassthroughSubject<Bool, Never> { get }
     var dismissPublisher: PassthroughSubject<Void, Never> { get }
     var analyzeModelPublisher: PassthroughSubject<AnalysisData, Never> { get }
@@ -71,12 +70,12 @@ final class AnalyzeViewModel: AnalyzeViewModelInterface, AnalyzeViewModelOutputI
                 self.stopTimer()
             }
         })
-        
+
         if let timer = self.timer {
             RunLoop.current.add(timer, forMode: .default)
         }
     }
-    
+
     private func stopTimer() {
         if timer != nil {
             timer?.invalidate()

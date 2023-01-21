@@ -21,7 +21,8 @@ final class AnalysisTableViewCell: UITableViewCell {
     let analysisTypeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
