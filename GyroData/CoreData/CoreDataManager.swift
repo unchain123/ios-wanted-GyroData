@@ -38,17 +38,30 @@ final class CoreDataManager {
         GraphFileManager.shared.saveJsonData(data: fileModel, fileName: content.id ?? UUID())
         saveContext()
     }
-    
-    func read() -> [GyroData]? {
+//    
+//    func read() -> [GyroData]? {
+//        let request = NSFetchRequest<GyroData>(entityName: "GyroData")
+//        request.fetchLimit = 10
+//        do {
+//            let gyroData = try context.fetch(request)
+//            fetchedAnalysisValue = gyroData.reversed()
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//        return fetchedAnalysisValue
+//    }
+
+    func pageRead() -> (model: [GyroData]?, page: Double) {
         let request = NSFetchRequest<GyroData>(entityName: "GyroData")
+        let page = ceil(Double(fetchedAnalysisValue.count / 10))
         request.fetchLimit = 10
-        do {
+                do {
             let gyroData = try context.fetch(request)
             fetchedAnalysisValue = gyroData.reversed()
         } catch {
             print(error.localizedDescription)
         }
-        return fetchedAnalysisValue
+        return (fetchedAnalysisValue, page)
     }
 
     func delete(data: GyroData) {

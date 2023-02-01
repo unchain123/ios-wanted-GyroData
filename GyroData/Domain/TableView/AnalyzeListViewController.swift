@@ -67,6 +67,7 @@ final class AnalyzeListViewController: UIViewController {
     }
 }
 
+//MARK: UITableViewDelegate, UITableViewDataSource
 extension AnalyzeListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         listViewModel.analysis.count
@@ -120,5 +121,18 @@ extension AnalyzeListViewController: UITableViewDelegate, UITableViewDataSource 
                 )
             }
             .store(in: &cancelable)
+    }
+}
+
+//MARK: UITableViewDataSourcePrefetching
+
+extension AnalyzeListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let lastItem = indexPaths.count - 1
+        for indexPath in indexPaths {
+            if lastItem == indexPath.item {
+                self.listViewModel.input.scrollDidBottom()
+            }
+        }
     }
 }

@@ -111,7 +111,8 @@ final class AnalyzeViewController: UIViewController {
         return stack
     }()
     
-    @ObservedObject private var viewModel = AnalyzeViewModel(analysisManager: AnalysisManager())
+    @ObservedObject private var viewModel = AnalyzeViewModel(analysisManager: AnalysisManager(analysisType: Accelerate()))
+
     private var cancelable = Set<AnyCancellable>()
     private var swiftUIChartsView = GraphView()
     private lazy var hostView = HostingViewController(model: viewModel.environment)

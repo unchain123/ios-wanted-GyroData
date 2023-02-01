@@ -63,7 +63,7 @@ final class AnalyzeViewModel: AnalyzeViewModelInterface, AnalyzeViewModelOutputI
             if self.analysis.count != 600 {
                 let date = timer.fireDate.timeIntervalSince1970
                 let measureTime = date - now
-                let data = self.analysisManager.startAnalyze(mode: self.analyzeMode)
+                let data = self.analysisManager.startAnaylze()
                 self.analysis.append(.init(x: data.x, y: data.y, z: data.z, measurementTime: measureTime))
                 self.analyzeModelPublisher.send((x: data.x, y: data.y, z: data.z))
             } else {
@@ -80,7 +80,7 @@ final class AnalyzeViewModel: AnalyzeViewModelInterface, AnalyzeViewModelOutputI
         if timer != nil {
             timer?.invalidate()
             timer = nil
-            analysisManager.stopAnalyze(mode: self.analyzeMode)
+            analysisManager.stopAnalyze()
         }
     }
 }
@@ -96,31 +96,20 @@ extension AnalyzeViewModel: AnalyzeViewModelInputInterface {
     
     func tapStopButton() {
         stopTimer()
-        analysisManager.stopAnalyze(mode: self.analyzeMode)
+        analysisManager.stopAnalyze()
     }
     
     func tapSaveButton() {
         isLoadingPublisher.send(true)
         DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             guard let self = self else { return }
-            switch self.analyzeMode {
-            case .accelerate:
-                self.cellModel = [CellModel.init(
-                    id: UUID(),
-                    analysisType: AnalysisType.accelerate.rawValue,
-                    savedAt: Date.now,
-                    measurementTime: self.analysis.last?.measurementTime ?? 0.0
-                )]
-                CoreDataManager.shared.create(model: self.cellModel, fileModel: self.analysis)
-            case .gyroscope:
-                self.cellModel = [.init(
-                    id: UUID(),
-                    analysisType: AnalysisType.gyroscope.rawValue,
-                    savedAt: Date.now,
-                    measurementTime: self.analysis.last?.measurementTime ?? 0.0
-                )]
-                CoreDataManager.shared.create(model: self.cellModel, fileModel: self.analysis)
-            }
+            self.cellModel = [.init(
+                id: UUID(),
+                analysisType: self.analysisManager.analysisType.title,
+                savedAt: Date.now,
+                measurementTime: self.analysis.last?.measurementTime ?? 0.0
+            )]
+            CoreDataManager.shared.create(model: self.cellModel, fileModel: self.analysis)
             
             self.isLoadingPublisher.send(false)
             self.dismissPublisher.send(())
@@ -129,9 +118,9 @@ extension AnalyzeViewModel: AnalyzeViewModelInputInterface {
     
     func changeAnalyzeMode(_ segmentIndex: Int) {
         if segmentIndex == 0 {
-            self.analyzeMode = .accelerate
+            analysisManager.chooseAccelerate()
         } else if segmentIndex == 1 {
-            self.analyzeMode = .gyroscope
+            analysisManager.chooseGyroScope()
         }
     }
 }
